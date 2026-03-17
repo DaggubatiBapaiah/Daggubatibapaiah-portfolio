@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #050505;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-primary: #00f2ea;
+  --accent-secondary: #ff0055;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --font-main: 'Outfit', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+/* Responsive Grids & Layouts */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.projects-grid,
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.section-title {
+  font-size: 3rem;
+}
+
+/* Mobile Media Queries */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 3rem 2.5rem;
+    /* Increased side padding */
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    /* Increased side padding */
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-section {
+    padding: 120px 2.5rem 4rem 2.5rem;
+    /* Explicit side padding for mobile hero */
+    /* Space for nav */
+    height: auto;
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    /* Smaller title on mobile */
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    /* Stack about section */
+    gap: 2rem;
+  }
+
+  .projects-grid,
+  .cert-grid {
+    grid-template-columns: 1fr;
+    /* Single column projects */
+  }
+
+  .section-title {
+    font-size: 2rem !important;
+    /* Smaller section headers */
+    word-break: break-word;
+    /* Prevent overflow */
+  }
+
+  /* Modal adjustments */
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
