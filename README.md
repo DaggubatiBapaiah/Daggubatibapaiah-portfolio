@@ -1,4 +1,4 @@
-# Cinematic 3D Portfolio - Daggubati Bapaiah Chowdary
+#  Portfolio - Daggubati Bapaiah Chowdary
 
 A premium, cinematic personal portfolio built with React, Three.js, and Framer Motion.
 Designed to showcase engineering depth, AI capability, and creative design.
