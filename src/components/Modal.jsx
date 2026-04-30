@@ -9,27 +9,36 @@ const Modal = ({ isOpen, onClose, project }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (isOpen && project?.repo) {
-            setLoading(true);
-            setError(null);
-            // Try main first, fallback to master if needed
-            fetch(`https://raw.githubusercontent.com/${project.repo}/main/README.md`)
-                .then(async (res) => {
-                    if (!res.ok) {
-                        return fetch(`https://raw.githubusercontent.com/${project.repo}/master/README.md`);
-                    }
-                    return res;
-                })
-                .then(async (res) => {
-                    if (!res.ok) throw new Error('README not found');
-                    return res.text();
-                })
-                .then(text => setReadmeContent(text))
-                .catch(err => {
-                    console.error(err);
-                    setError('Could not load README. Please check the repository link.');
-                })
-                .finally(() => setLoading(false));
+        if (isOpen) {
+            if (project?.detailedContent) {
+                setReadmeContent(project.detailedContent);
+                setLoading(false);
+                setError(null);
+            } else if (project?.repo) {
+                setLoading(true);
+                setError(null);
+                // Try main first, fallback to master if needed
+                fetch(`https://raw.githubusercontent.com/${project.repo}/main/README.md`)
+                    .then(async (res) => {
+                        if (!res.ok) {
+                            return fetch(`https://raw.githubusercontent.com/${project.repo}/master/README.md`);
+                        }
+                        return res;
+                    })
+                    .then(async (res) => {
+                        if (!res.ok) throw new Error('README not found');
+                        return res.text();
+                    })
+                    .then(text => setReadmeContent(text))
+                    .catch(err => {
+                        console.error(err);
+                        setError('Could not load README. Please check the repository link.');
+                    })
+                    .finally(() => setLoading(false));
+            } else {
+                setReadmeContent('');
+                setLoading(false);
+            }
         } else {
             setReadmeContent('');
         }
